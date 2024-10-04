@@ -1,0 +1,10 @@
+{
+    "environment": "",
+    "isSandbox": false,
+    "auth": {
+        "user": "",
+        "pass": ""
+    },
+    "resourceType": "",
+    "startingDirectory": ""
+}
