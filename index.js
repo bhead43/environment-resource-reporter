@@ -28,12 +28,12 @@ if (!fs.existsSync('./results')) {
 // Create CSV with headers column to write to, replace if report already exists
 fs.writeFileSync(
     `./results/${resultFileName}`,
-    'File Name, CHILI ID, Folderpath, File Size'
+    'File Name, CHILI ID, Folderpath, File Size, File Size (in bytes)'
 );
 // Append results of each resource to file
 resources.forEach(resource => {
     fs.appendFileSync(
         `./results/${resultFileName}`,
-        `\n${resource.name}, ${resource.id}, ${resource.folderPath}, ${resource.fileSize}`
+        `\n${resource.name}, ${resource.id}, ${resource.folderPath}, ${resource.fileSize}, ${resource.fileSize_bytes}`
     );
 });
