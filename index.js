@@ -7,10 +7,16 @@ const baseurl = buildBaseURL(config.environment, config.isSandbox);
 const resultFileName = buildResultFileName(config.environment, config.resourceType, config.startingDirectory);
 
 // Get API key
-const apikeyFetch = await generateAPIKey(config.auth.user, config.auth.pass, config.environment, baseurl);
-const apikey = apikeyFetch.isOK ? apikeyFetch.response : "FAILED";
-if (apikey == "FAILED") {
-    throw new Error(apikeyFetch.error);
+let apikey;
+if(config.auth.apikey.trim() != ""){
+    apikey = config.auth.apikey;
+}
+else {
+    const apikeyFetch = await generateAPIKey(config.auth.user, config.auth.pass, config.environment, baseurl);
+    apikey = apikeyFetch.isOK ? apikeyFetch.response : "FAILED";
+    if (apikey == "FAILED") {
+        throw new Error(apikeyFetch.error);
+    }
 }
 
 // Get list of all resources within a given directory (recursive)

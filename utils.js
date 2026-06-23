@@ -83,7 +83,7 @@ export function buildBaseURL(environment, isSandbox = false) {
 // Build output CSV file name
 export function buildResultFileName(environment, type, directory) {
     const regex = /[/\\ ]/;
-    return `${environment}_${type}${(directory.replace(regex, "")) == "" ? "" : `_${directory}`}.csv`
+    return encodeURIComponent(`${environment}_${type}${(directory.replace(regex, "")) == "" ? "" : `_${directory}`}.csv`);
 }
 
 // Convert KB/MB/GB file size counts to bytes
@@ -97,13 +97,13 @@ function parseToBytes(filesize) {
             bytes = parseInt(num);
             break;
         case "Kb":
-            bytes = parseInt(num * 1000);
+            bytes = parseInt(num * 1024);
             break;
         case "Mb":
-            bytes = parseInt(num * 1000000);
+            bytes = parseInt(num * 1024 * 1024);
             break;
         case "Gb":
-            bytes = parseInt(num * 1000000000);
+            bytes = parseInt(num * 1024 * 1024 * 10024);
             break;
         default:
             bytes = -1;
